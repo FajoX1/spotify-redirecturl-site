@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .container {
+            text-align: center;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 400px;
+        }
+        .code {
+            font-family: monospace;
+            background: #2e2e2e;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 10px 0;
+            color: #d3d3d3;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        button {
+            background-color: #ffffff;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 20px auto 0;
+        }
+        button img {
+            width: 24px;
+            height: 24px;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auth Code</h1>
+        <div id="code" class="code">No code provided</div>
+        <button onclick="copyCode()">
+            <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="Copy">
+        </button>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const code = getQueryParam('code');
+        const codeElement = document.getElementById('code');
+
+        if (code) {
+            codeElement.textContent = code;
+        }
+
+        function copyCode() {
+            if (code) {
+                navigator.clipboard.writeText(code);
+            } else {
+                alert('No code to copy!');
+            }
+        }
+    </script>
+</body>
+</html>
